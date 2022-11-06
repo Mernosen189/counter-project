@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import CounterHook from "./CounterHook";
+import { Route, Routes } from "react-router-dom";
+import Error from "./Error";
+import { Helmet } from "react-helmet";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Helmet>
+        <title>reduce counter</title>
+        <meta name="description" content="reducer counter" />
+      </Helmet>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<CounterHook />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </ErrorBoundary>
+    </>
   );
+  
 }
 
 export default App;
